@@ -1,18 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 
-export const Carousel = ({ slides }) => {
+export const Carousel = ({slides, autoSlide = false, autoSlideInterval = 3000, }) => {
 
     const [current, setCurrent] = useState(0);
 
     const prevSlide = () => {
-        setCurrent(current === 0 ? slides.length - 1 : current - 1)
+        setCurrent((current) => (current === 0 ? slides.length - 1 : current - 1))
     }
 
     const nextSlide = () => {
-        setCurrent(current === slides.length - 1 ? 0 : current + 1)
+        setCurrent((current) => (current === slides.length - 1 ? 0 : current + 1))
     }
+
+    useEffect(() => {
+        if (!autoSlide) return 
+        const slideInterval = setInterval(nextSlide, autoSlideInterval)
+        return () => clearInterval(slideInterval) 
+    }, [])
 
     return (
         <div className="relative w-full overflow-hidden ">

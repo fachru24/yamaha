@@ -15,7 +15,7 @@ export const Dashboard = () => {
       <Navbar />
 
       <div className="">
-        <Carousel slides={slides} />
+        <Carousel autoSlide = {true} autoSlideInterval={4000} slides={slides} />
       </div>
 
       <div className="">
