@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 
-export const Carousel = ({slides, autoSlide = false, autoSlideInterval = 3000, }) => {
+export const Carousel = ({ slides, autoSlide = false, autoSlideInterval = 3000, }) => {
 
     const [current, setCurrent] = useState(0);
 
@@ -15,9 +15,9 @@ export const Carousel = ({slides, autoSlide = false, autoSlideInterval = 3000, }
     }
 
     useEffect(() => {
-        if (!autoSlide) return 
+        if (!autoSlide) return
         const slideInterval = setInterval(nextSlide, autoSlideInterval)
-        return () => clearInterval(slideInterval) 
+        return () => clearInterval(slideInterval)
     }, [])
 
     return (
@@ -33,7 +33,7 @@ export const Carousel = ({slides, autoSlide = false, autoSlideInterval = 3000, }
                     return (
                         <img
                             key={index}
-                            className=" min-w-full object-contain"  // Mengisi lebar layar penuh menggunakan min-w
+                            className=" min-w-full object-contain mt-14 md:mt-0"  // Mengisi lebar layar penuh menggunakan min-w
                             src={s}
                             alt={`slide-${index}`}
                         />
@@ -51,15 +51,15 @@ export const Carousel = ({slides, autoSlide = false, autoSlideInterval = 3000, }
                 <FaChevronRight className="text-2xl text-white" />
             </button>
 
-            <div 
-            className="absolute bottom-10 right-0 left-0 py-4 flex justify-center gap-4 w-full ">
+            <div
+                className="absolute bottom-10 right-0 left-0 py-4 flex justify-center gap-4 w-full ">
                 {slides.map((s, index) => {
-                    return     <div
-                    onClick={() => {
-                      setCurrent(index)
-                    }} 
-                    key={"circle" + index}
-                    className={`rounded-full w-2 h-2 cursor-pointer ${index === current ? "bg-black" : "bg-gray-400"}`}></div>;
+                    return <div
+                        onClick={() => {
+                            setCurrent(index)
+                        }}
+                        key={"circle" + index}
+                        className={`rounded-full w-2 h-2 cursor-pointer ${index === current ? "bg-black" : "bg-gray-400"}`}></div>;
                 })}
             </div>
         </div>
@@ -68,4 +68,4 @@ export const Carousel = ({slides, autoSlide = false, autoSlideInterval = 3000, }
 
 export default Carousel;
 
-    
+
